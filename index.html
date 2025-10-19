@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="A showcase of interactive multimedia and design work. Featuring projects in illustration, 3D modeling, game design, woodworking, ceramics, and digital art.">
+
+  <link rel="icon" type="image/webp" href="images/index/ui/cyclo---v-profile-picture.webp">
+  <title>Zeeni Projects</title>
+
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/slideshow.css">
+  <link rel="stylesheet" href="styles/illustration.css">
+  <link rel="stylesheet" href="styles/scroll-section.css">
+  <link rel="stylesheet" href="styles/projects-display.css">
+</head>
+
+<body style="background-color:#fcf0eb;">
+
+  <!-- Header -->
+  <div class="header-div scroll-item">
+    <img fetchpriority="high" loading="eager" decoding="async" class="thumbnail-img" src="images/index/ui/cyclo---v-profile-picture.webp"
+      alt="Profile picture of planet with rings from a top-down perspective">
+    <div class="thumbnail-text">Z E E N I - P R O J E C T S</div>
+
+    <nav class="header-nav-list">
+      <button class="header-nav-list-illustration">Illustration</button>
+      <button class="header-nav-list-projects">Projects</button>
+      <a href="Planetary System.html">About</a>
+    </nav>
+
+    <!-- Header 
+    <script>
+      // adds .active to the link whose href matches the current location
+      (function () {
+        const links = document.querySelectorAll('.header-nav-list a');
+        const current = window.location.href;
+
+        links.forEach(a => {
+          if (a.href === current) {
+            a.classList.add('active');
+          }
+        });
+      })();
+    </script>
+-->
+    <script>
+      (function () {
+        const nav = document.querySelector('.header-nav-list');
+        if (!nav) return;
+
+        let ticking = false;
+        let navTop = 0;
+        let lastViewportHeight = window.innerHeight;
+
+        // Temporarily disable transitions to avoid glitch on load
+        nav.style.transition = 'none';
+
+        function updateNavTop() {
+          const wasFixed = nav.classList.contains('is-fixed');
+          if (wasFixed) nav.classList.remove('is-fixed');
+          navTop = nav.offsetTop;
+          if (wasFixed) nav.classList.add('is-fixed');
+        }
+
+        function onScroll() {
+          const lastScroll = window.scrollY || window.pageYOffset;
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              if (lastScroll >= navTop) nav.classList.add('is-fixed');
+              else nav.classList.remove('is-fixed');
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+
+        function onResize() {
+          const newHeight = window.innerHeight;
+          // Ignore tiny viewport shifts (like address bar hiding)
+          if (Math.abs(newHeight - lastViewportHeight) > 100) {
+            lastViewportHeight = newHeight;
+            setTimeout(() => {
+              updateNavTop();
+              onScroll();
+            }, 200);
+          }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onResize);
+        window.visualViewport?.addEventListener('resize', onResize);
+
+        window.addEventListener('load', () => {
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              updateNavTop();
+              onScroll(); // apply correct state if loaded mid-page
+
+              // Re-enable transitions cleanly (fixes the "glitch" effect)
+              void nav.offsetHeight; // force reflow
+              nav.style.transition = ''; // restore transitions
+            }, 100);
+          });
+        });
+
+        // Safety init
+        requestAnimationFrame(() => {
+          updateNavTop();
+          onScroll();
+        });
+      })();
+    </script>
+
+
+  </div>
+
+  <!-- Header / Slideshow -->
+  <div class="carousel-wrapper">
+    <button class="nextBtn">→</button>
+    <button class="prevBtn">←</button>
+
+    <div class="carousel">
+      <div class="track">
+
+        <div class="slide" onclick="window.location.href='Planetary System.html'">
+          <img fetchpriority="high" loading="eager" decoding="async" src="images/index/slideshow/cyclo---v-front-page.webp" alt="Cyclo-V">
+          <div class="caption">
+            <h3>Cyclo-V System</h3><a>View Project <span class="arrow">→</span></a>
+          </div>
+          <div class="yt-logo">
+            <a href="https://www.youtube.com/watch?v=Kvd5GkvYH9Y" target="_blank" onclick="event.stopPropagation()">
+              <img fetchpriority="high" loading="eager" decoding="async" src="images/index/ui/youtube-icon-b&w.webp" alt="YouTube Logo">
+            </a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img loading="lazy" decoding="async" src="images/index/slideshow/yougurt-title-screen-animated.webp" loading="lazy"
+            alt="Pixel art character with a dark gray hood and a red cloak standing on two small legs. The background is a scenic grassy view with a yogurt shaped castle in the distant.">
+          <div class="caption">
+            <h3>Pixel Art</h3><a>View Project <span class="arrow">→</span></a>
+          </div>
+          <div class="yt-logo">
+            <a href="https://www.youtube.com/watch?v=FjojosqNUQM" target="_blank" onclick="event.stopPropagation()">
+              <img loading="lazy" decoding="async" src="images/index/ui/youtube-icon-b&w.webp" loading="lazy" alt="YouTube Logo">
+            </a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img loading="lazy" decoding="async" src="images/index/slideshow/jeet-ski.webp" loading="lazy" alt="Jet Ski Videogame">
+          <div class="caption">
+            <h3>Jet Ski Game</h3><a>View Project <span class="arrow">→</span></a>
+          </div>
+          <div class="yt-logo">
+            <a href="https://www.youtube.com/watch?v=GRdhYDQRUAA" target="_blank" onclick="event.stopPropagation()">
+              <img loading="lazy" decoding="async" src="images/index/ui/youtube-icon-b&w.webp" loading="lazy" alt="YouTube Logo">
+            </a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img loading="lazy" decoding="async" src="images/index/slideshow/sidetable-full-angled-shot.webp" loading="lazy" alt="Cyclo-V">
+          <div class="caption">
+            <h3>Woodworking</h3><a>View Project <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img loading="lazy" decoding="async" src="images/index/shared/cyclo-v-1by1-main-illustration.webp" loading="lazy"
+            alt="Sun at the center of the screen covered with solar flares and surrounded by dotted sparks of light and an illuminated atmosphere">
+          <div class="caption">
+            <h3>K-type Star</h3><a>View Project <span class="arrow">→</span></a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img loading="lazy" decoding="async" src="images/index/shared/ds-final-render.webp" loading="lazy" alt="3D render of a Nintendo DS">
+          <div class="caption">
+            <h3>Nintendo DS</h3><a>View Project <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Carousel logic (cleaner & fixed selectors)
+      (function () {
+        const track = document.querySelector('.track');
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        const nextBtn = document.querySelector('.nextBtn');
+        const prevBtn = document.querySelector('.prevBtn');
+        let index = 0;
+        let interval = null;
+
+        function showSlide(i) {
+          index = (i + total) % total;
+          track.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        function nextSlide() { showSlide(index + 1); }
+        function prevSlide() { showSlide(index - 1); }
+
+        function startCarousel() {
+          if (!interval) interval = setInterval(nextSlide, 3000);
+        }
+
+        function stopCarousel() {
+          clearInterval(interval);
+          interval = null;
+        }
+
+        // Start
+        startCarousel();
+
+        // Pause on mouse / touch
+        const carousel = document.querySelector('.carousel');
+        if (carousel) {
+          carousel.addEventListener('mouseenter', stopCarousel);
+          carousel.addEventListener('mouseleave', startCarousel);
+          carousel.addEventListener('touchstart', stopCarousel, { passive: true });
+          carousel.addEventListener('touchend', startCarousel, { passive: true });
+          carousel.addEventListener('touchcancel', startCarousel, { passive: true });
+        }
+
+        // Buttons
+        if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); stopCarousel(); startCarousel(); });
+        if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); stopCarousel(); startCarousel(); });
+
+        // Make slides clickable but prevent click when user clicks the youtube link
+        slides.forEach(slide => {
+          slide.addEventListener('click', (e) => {
+            // If click was on a link inside slide, let it through
+            if (e.target.closest('a')) return;
+            const href = slide.getAttribute('onclick');
+            if (href) {
+              // preserve your original onclick behavior (redirect to project page)
+              // NOTE: the original used window.location.href='Planetary System.html' inside markup
+              window.location.href = 'Planetary System.html';
+            }
+          });
+        });
+      })();
+    </script>
+
+  </div>
+
+  <!-- Slideshow / Illustration -->
+  <div class="scroll-item">
+    <!-- Nebula 1:1 -->
+    <div class="illustration-row">
+      <img fetchpriority="high" loading="eager" decoding="async" src="images/index/illustrations/nebula-1by1-main-illustration.webp" class="illustration-full"
+        alt="Collapsing nebula with a shining star in the center">
+    </div>
+    <!-- Nebula 16:9 / Cyclo V Sun -->
+    <div class="illustration-row">
+      <img fetchpriority="high" loading="eager" decoding="async" src="images/index/illustrations/nebula-zoomed-in.webp" class="illustration-half"
+        alt="Colorful collapsing nebula">
+      <img fetchpriority="high" loading="eager" decoding="async" src="images/index/illustrations/cyclo-v-bottom-left-shot.webp" class="illustration-half"
+        alt="Sun in the bottom left corner covered with solar flares">
+    </div>
+    <!-- Cyclo-V Sun -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/shared/cyclo-v-1by1-main-illustration.webp" class="illustration-full"
+        alt="Sun at the center with solar flares and illuminated atmosphere">
+    </div>
+    <!-- Cyclo-V South -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo---v-south-iya.webp" class="illustration-full"
+        alt="Large landmass with small bodies of water and clouds floating above">
+    </div>
+    <!-- Cyclo-V Darkside || Nightside / Cyclo-V Landmass & Cloudsn -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo---v-close-planet-shot.webp" class="illustration-half"
+        alt="Full shot of a planet">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo---v-clouds-and-ocean.webp" class="illustration-half"
+        alt="Expansive body of water with clouds floating above">
+    </div>
+    <!-- Cyclo-V Ocean & Clouds -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo---v-lock-screen-clouds-and-surface.webp" class="illustration-full"
+        alt="Landmass with clouds, taken from space">
+    </div>
+    <!-- Cyclo-V Phone Background / Cyclo-V Continent -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo---v-lock-screen-land.webp" class="illustration-half"
+        alt="Slender landmass surrounded by sea">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo---v-height-map.webp" class="illustration-half"
+        alt="Color-coded height map of a continent">
+    </div>
+    <!-- Cyclo-V Phone Background / Cyclo-V Continent -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/headphone-pfp.webp" class="illustration-third"
+        alt="Pixel art of a pair of headphones">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/mug.webp" class="illustration-third"
+        alt="Pixel art of a coffee mug on a wooden platform">
+      <img loading="lazy" decoding="async" src="images/index/shared/aisha-height.webp" class="illustration-third"
+        alt="Height of a red and grey hooded character in pixels">
+    </div>
+    <!-- Cyclo-V South -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/yougourt-title-screen-king's-bucher.webp" class="illustration-full"
+        alt="Still image of an animated title screen">
+    </div>
+    <!-- Cyclo-V51 Texture / Cyclo-V51 Side -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo-v51-uv-map.webp" class="illustration-half"
+        alt="Texture map of the Cyclo-V51 moon">
+      <img loading="lazy" decoding="async" src="images/index/illustrations/cyclo-v51.webp" class="illustration-half"
+        alt="Cyclo-V51 moon with planetary rings in the midground">
+    </div>
+    <!-- Cyclo-V South -->
+    <div class="illustration-row">
+      <img loading="lazy" decoding="async" src="images/index/shared/ds-final-render.webp" class="illustration-full"
+        alt="Green and gold Nintendo DS with a green background">
+    </div>
+
+    <script>
+      // Observe each .illustration-row to animate when it comes into view
+      document.addEventListener("DOMContentLoaded", () => {
+        const rows = document.querySelectorAll(".illustration-row");
+
+        const observer = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1 } // fire when 10% of element is visible
+        );
+
+        rows.forEach(row => observer.observe(row));
+      });
+    </script>
+  </div>
+
+  <!-- Illustration / Projects Display -->
+  <div class="scroll-item">
+    <div class="project-gap">
+      <h1>Projects</h1>
+    </div>
+
+    <!-- 1st Row -->
+    <div class="three-project-row">
+
+      <!-- Card 1 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/project-display/cyclo---v-top-down-1by1.webp"
+            alt="Top view of a planet with bright concentric rings, with a small planet at the center surrounded by a dark space background.">
+        </div>
+        <div class="card-text">Cyclo-V System</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/shared/aisha-height.webp"
+            alt="Pixel art character with a gray mask-like face and dark hood, wearing a red cloak that drapes to the ground and standing on two small legs. The background is a light gray checkerboard pattern. To the right of the character is a black bar indicating the character's height in pixels (47).">
+        </div>
+        <div class="card-text">Pixel Art</div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/project-display/nebula-16by9.webp"
+            alt="Colapsing nebula with a shining star in the center">
+        </div>
+        <div class="card-text">Nebula</div>
+      </div>
+    </div>
+
+    <!-- 2nd Row -->
+    <div class="three-project-row">
+
+      <!-- Card 1 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/project-display/jeet-ski-title-page.webp" alt="Jet Ski Videogame">
+        </div>
+        <div class="card-text">Game Development</div>
+      </div>
+      <!-- Card 3 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/project-display/ds-closed-final-render.webp" alt="Nintendo DS render">
+        </div>
+        <div class="card-text">Nintendo DS</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/project-display/cyclo-v-low-quality.webp"
+            alt="Sun rendering in the center of the image with solar flares and an illuminated atmosphere">
+        </div>
+        <div class="card-text">K-type Star</div>
+      </div>
+
+    </div>
+
+    <!-- 3rd Row -->
+    <div class="three-project-row">
+
+      <!-- Card 1 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/project-display/doghnut-pfp.webp"
+            alt="Screenshot of a 3D donut with a pink frosting and sprinkles on a blue checkered table">
+        </div>
+        <div class="card-text">Blender Tutorials</div>
+      </div>
+
+      <!-- Card 1 -->
+      <div class="card" onclick="window.location.href='Planetary System.html'">
+        <div class="card-img-wrapper">
+          <img loading="lazy" decoding="async" src="images/index/project-display/table.webp" alt="Colapsing nebula with a shining star in the center">
+        </div>
+        <div class="card-text">Woodworking</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Projects Display / Scroll Section -->
+  <div class="scroll-item">
+    <button class="prevSectionBtn">↑</button>
+    <button class="nextSectionBtn">↓</button>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/zeeni012" target="_blank"><img loading="lazy" decoding="async" src="images/index/ui/instagram-icon-b&w.webp"
+          alt="Instagram"></a>
+      <a href="https://www.youtube.com/@Hamzeeni12" target="_blank"><img loading="lazy" decoding="async" src="images/index/ui/youtube-icon-b&w.webp"
+          alt="YouTube"></a>
+      <a href="https://www.tiktok.com/@zeeni0123" target="_blank"><img loading="lazy" decoding="async" src="images/index/ui/tiktok-icon-b&w.webp"
+          alt="TikTok"></a>
+      <a href="mailto:hamzaomarksp@gmail.com" target="_blank"><img loading="lazy" decoding="async" src="images/index/ui/email-icon-b&w.webp"
+          alt="Email"></a>
+    </div>
+    <!-- Scroll Section -->
+
+
+    <script>
+      // simplified scroll-to-section + observer mapping
+      (function () {
+        const sections = document.querySelectorAll('.scroll-item');
+        let sectionindex = 0;
+
+        function showSection(i) {
+          if (i < 0 || i >= sections.length) return;
+          sectionindex = i;
+          sections[i].scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function nextSection() {
+          if (sectionindex < sections.length - 1) sectionindex++;
+          showSection(sectionindex);
+        }
+
+        function prevSection() {
+          if (sectionindex > 0) sectionindex--;
+          showSection(sectionindex);
+        }
+
+        function ProjectSection() { showSection(2); }
+        function IllustrationSection() { showSection(1); }
+
+        document.querySelector('.nextSectionBtn')?.addEventListener('click', nextSection);
+        document.querySelector('.prevSectionBtn')?.addEventListener('click', prevSection);
+        document.querySelector('.header-nav-list-projects')?.addEventListener('click', ProjectSection);
+        document.querySelector('.header-nav-list-illustration')?.addEventListener('click', IllustrationSection);
+
+        const sectionToClassMap = {
+          0: { selector: ".header-nav-list-illustration", activeClass: "activated" },
+          1: { selector: ".header-nav-list-illustration", activeClass: "activated" },
+          2: { selector: ".header-nav-list-projects", activeClass: "activated" },
+          3: { selector: ".header-nav-list-projects", activeClass: "activated" }
+        };
+
+        const navButtons = {};
+        Object.values(sectionToClassMap).forEach(({ selector }) => {
+          navButtons[selector] = document.querySelector(selector);
+        });
+
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+        const observerOptions = isMobile
+          ? { threshold: [0], rootMargin: "-20% 0px -60% 0px" } // mobile-friendly
+          : { threshold: [0.1] }; // desktop
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              sectionindex = Array.from(sections).indexOf(entry.target);
+              console.log("Current Section index:", sectionindex);
+
+              Object.values(sectionToClassMap).forEach(({ selector, activeClass }) => {
+                navButtons[selector]?.classList.remove(activeClass);
+              });
+
+              if (sectionToClassMap[sectionindex]) {
+                const { selector, activeClass } = sectionToClassMap[sectionindex];
+                navButtons[selector]?.classList.add(activeClass);
+              }
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach(sec => observer.observe(sec));
+      })();
+    </script>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Select all interactive elements you want touch feedback on
+      const touchables = document.querySelectorAll(
+        '.card, .socials a img, .carousel, .prevBtn, .nextBtn, button, .prevSectionBtn, .nextSectionBtn'
+      );
+
+      touchables.forEach(el => {
+        let startY = 0;
+
+        // Touch start → press visual feedback
+        el.addEventListener('touchstart', e => {
+          startY = e.touches[0].clientY;
+          el.classList.add('touched');
+        }, { passive: true });
+
+        // Touch end → remove feedback + click if it wasn't a scroll
+        el.addEventListener('touchend', e => {
+          el.classList.remove('touched');
+          const endY = e.changedTouches[0].clientY;
+
+          // Only trigger "click" if not scrolling
+          if (Math.abs(endY - startY) < 10) {
+            // If element is a link or button, let native click handle it.
+            // If an element had an onclick handler, we preserve behavior:
+            if (typeof el.onclick === 'function') el.onclick();
+          }
+        }, { passive: true });
+
+        // Touch cancel → remove feedback (finger leaves screen)
+        el.addEventListener('touchcancel', () => {
+          el.classList.remove('touched');
+        }, { passive: true });
+      });
+    });
+  </script>
+</body>
+
+</html>
+
+<!-- Add Ceramic project -->
+
+<!-- Add dots under the theslideshow to indicate how many slides there are and which one were on -->
+
+<!-- Not everyting lines up propperly on mobile when using the up and down arrow botttons -->
+
+<!-- Need better pictures for the project section -->
+
+<!-- When clicking on an image in the illustration section, it should show itself in full screen format -->
+
+<!-- Because of the sheer number of woodworking projects I've created, I decided to dedicate just one project page for them all.
+ Listed my favorite to least: top to bottom -->
+
+<!-- mailto doesn't work -->

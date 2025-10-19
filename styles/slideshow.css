@@ -1,0 +1,219 @@
+/* ===============================
+   Carousel Wrapper
+================================= */
+.carousel-wrapper {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    /* Instead of a fixed 890px */
+    max-width: 890px;
+    /* Keeps your original layout on desktop */
+    margin-bottom: 50px;
+}
+
+/* ===============================
+   Carousel Core
+================================= */
+.carousel {
+    width: 100%;
+    /* Fill parent width dynamically */
+    max-width: 675px;
+    /* Keeps your original layout on desktop */
+    overflow: hidden;
+    margin: auto;
+    padding: 45px 20px 20px 20px;
+    border-radius: 15px;
+    background: #fcfbf925;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.1);
+}
+
+/* ===============================
+   Navigation Buttons
+================================= */
+.prevBtn,
+.nextBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: #fcfbf950;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prevBtn {
+    left: 0;
+}
+
+.nextBtn {
+    right: 0;
+}
+
+/* ===============================
+   Track and Slides
+================================= */
+.track {
+    display: flex;
+    transition: transform 0.7s ease;
+}
+
+.slide {
+    position: relative;
+    flex: 0 0 100%;
+    text-align: center;
+}
+
+.slide img:not(.yt-logo img) {
+    height: auto;
+    /* Allow proportional scaling */
+    max-height: 300px;
+    /* Keeps desktop look */
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* ===============================
+   Caption
+================================= */
+.caption {
+    padding: 15px;
+}
+
+.caption h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.caption a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px;
+    border-bottom: 1px solid black;
+    font-size: 0.9rem;
+}
+
+/* ===============================
+   YouTube Logo
+================================= */
+
+/* YouTube logo inside each slide */
+.yt-logo {
+    position: absolute;
+    top: 330px;
+    /*  bottom: 10px;    Safer than top: 330px for responsiveness */
+    right: 75px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.yt-logo img {
+    width: 40px;
+    height: auto;
+    transition: transform 0.2s ease;
+}
+
+.yt-logo img:hover {
+    transform: scale(1.2);
+}
+
+/* ===============================
+   Mobile Adjustments
+================================= */
+@media (max-width: 768px) {
+    .carousel-wrapper {
+        margin-bottom: 10px;
+    }
+
+    .carousel {
+        width: 64%;
+        padding: 20px 15px 8px 15px;
+    }
+
+    .prevBtn,
+    .nextBtn {
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.9rem;
+        top: 45%;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .prevBtn {
+        left: 3px;
+    }
+
+    .nextBtn {
+        right: 3px;
+    }
+
+    .carousel.touched {
+        transition: 0.1s;
+        background: #fcfbf9b5;
+    }
+
+    .prevBtn.touched,
+    .nextBtn.touched {
+        background: #fcfbf9;
+        transition: 0.1s;
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    .slide img:not(.yt-logo img) {
+        height: 6.5rem;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    .yt-logo {
+        top: 118px;
+        right: 15px;
+        width: 30px;
+    }
+
+    .yt-logo img {
+        width: 20px;
+    }
+
+    .caption {
+        padding: 5px;
+    }
+
+    .caption h3 {
+        margin: 5px 0 0 0;
+        font-size: 0.8rem;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .caption a {
+        font-size: 0.55rem;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        padding: 6px 0 2px 0;
+    }
+
+    .caption a .arrow {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel:hover {
+        transition: 0.15s;
+        background: #fcfbf9b5;
+    }
+
+    .prevBtn:hover,
+    .nextBtn:hover {
+        background: #fcfbf9;
+        transition: 0.15s;
+        transform: translateY(-50%) scale(1.05);
+    }
+
+}

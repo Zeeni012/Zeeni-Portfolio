@@ -1,0 +1,113 @@
+.project-gap {
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 35px;
+    padding-left: 50px;
+}
+
+.project-gap h1 {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.project-gap h1::before,
+.project-gap h1::after {
+    content: '';
+    flex: 1;
+    margin: 0 1rem;
+    border-bottom: 1px solid black;
+}
+
+/* Container */
+.three-project-row {
+    display: flex;
+    gap: 15px;
+    padding: 25px 6.5%;
+}
+
+.card {
+    flex: 1;
+    background-color: #e8595927;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(139, 1, 1, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.card-img-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    /* 1:1 ratio */
+}
+
+.card img {
+    position: absolute;
+    border-radius: 12px;
+    top: 15px;
+    right: 15px;
+    width: calc(100% - 30px);
+    height: calc(100% - 15px);
+    object-fit: cover;
+}
+
+.card-text {
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 768px) {
+    .project-gap {
+        padding: 5px 0 0 0;
+    }
+
+    .project-gap h1 {
+
+        font-size: 1.25rem;
+    }
+
+    .three-project-row {
+        flex-direction: column;
+        align-items: center;
+        padding: 7.5px;
+    }
+
+    .card {
+        width: 85%;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    /* Touch feedback for mobile (JS adds .touched) */
+    .card.touched {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 20px rgba(255, 40, 40, 0.3);
+    }
+
+    .card img {
+        top: 10px;
+        right: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 10px);
+    }
+
+    .card-text {
+        font-size: .9rem;
+        margin: 8px 0;
+    }
+}
+
+/* Responsive: stack on bigger screens */
+@media (min-width: 768px) {
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 4px 20px rgba(255, 40, 40, 0.3);
+        cursor: pointer;
+    }
+}

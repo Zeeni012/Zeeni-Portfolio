@@ -1,0 +1,102 @@
+section {
+    height: 0px;
+    background: black;
+}
+
+.nextSectionBtn,
+.prevSectionBtn {
+    position: fixed;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 80, 80, 0.5);
+    color: white;
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+    right: 3.1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nextSectionBtn {
+    bottom: 4.7rem;
+}
+
+.prevSectionBtn {
+    bottom: 9.4rem;
+}
+
+.socials {
+    position: fixed;
+    bottom: 14.7rem;
+    right: 3.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.socials a img {
+    width: 30px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+
+@media (max-width: 768px) {
+
+    .nextSectionBtn,
+    .prevSectionBtn {
+        width: 3rem;
+        height: 3rem;
+        font-size: 1.3rem;
+        right: 1.5rem;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        transition: 0.1s;
+    }
+
+    .prevSectionBtn.touched,
+    .nextSectionBtn.touched {
+        background: rgba(213, 29, 29, 0.8);
+    }
+
+    .prevSectionBtn {
+        bottom: 6rem;
+    }
+
+    .nextSectionBtn {
+        bottom: 2rem;
+    }
+
+    .socials {
+        position: fixed;
+        top: 24.3rem;
+        right: 0.4rem;
+        gap: 0.7rem;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        transition: 0.1s;
+    }
+
+    .socials a img {
+        width: 1.5rem;
+    }
+
+    .socials a img.touched {
+        scale: 1.1;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .nextSectionBtn:hover,
+    .prevSectionBtn:hover {
+        background: rgba(213, 29, 29, 0.8);
+    }
+
+    .socials a img:hover {
+        scale: 1.1;
+    }
+}

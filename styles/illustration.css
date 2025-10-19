@@ -1,0 +1,34 @@
+.illustration-row {
+  display: flex;
+  gap: 10px;
+  padding: 8px 15%;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.8s ease-out;
+}
+
+.illustration-row.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.illustration-full {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.illustration-half {
+  width: calc(50% - 5px);
+  border-radius: 10px;
+}
+
+.illustration-third {
+  width: calc(33.3% - 5px);
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .illustration-row {
+    padding: 5px 8.5%;
+  }
+}

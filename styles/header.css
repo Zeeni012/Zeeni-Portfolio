@@ -1,0 +1,118 @@
+.header-div {
+  width: 100%;
+  margin: 0 auto;
+  padding: 15px 0px 15px 0px;
+}
+
+.thumbnail-img {
+  height: 150px;
+  margin: auto;
+  display: flex;
+}
+
+.thumbnail-text {
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  padding-bottom: 12px;
+  margin-top: 15px;
+}
+
+.header-nav-list {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  transition: transform 0.3s ease;
+}
+
+.header-nav-list.is-fixed {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  background: rgba(252, 240, 235, 0.625);
+  width: 280px;
+  left: calc(50% - 140px);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.1);
+  padding: 10px 0;
+  backdrop-filter: blur(5px);
+  transform: translateY(15px);
+  border-radius: 45px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.header-nav-list a {
+  padding: 6px 8px;
+  color: black;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.header-nav-list-illustration,
+.header-nav-list-projects {
+  padding: 6px 8px;
+  border: none;
+  background-color: transparent;
+  font: inherit;
+  cursor: pointer;
+  position: relative;
+  /* so ::after positions relative to the button */
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* the animated underline */
+.header-nav-list-illustration::after,
+.header-nav-list-projects::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: .05rem;
+  /* thickness of the bar */
+  background-color: black;
+  transform: scaleX(0);
+  /* start hidden */
+  transform-origin: left;
+  /* animates left→right */
+  transition: transform 0.3s ease;
+}
+
+/* when activated, scale to full width */
+.header-nav-list-illustration.activated::after,
+.header-nav-list-projects.activated::after {
+  transform: scaleX(1);
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .header-div {
+    padding: 5px 0px 10px 0px;
+  }
+
+  .thumbnail-img {
+    height: 7rem;
+  }
+
+  .thumbnail-text {
+    padding-bottom: 5px;
+    font-size: 0.6rem;
+    font-weight: bold;
+  }
+
+  .header-nav-list a,
+  .header-nav-list-illustration,
+  .header-nav-list-projects {
+    font-size: 0.8rem;
+    padding: 3px 3px 3px 3px;
+  }
+
+  .header-nav-list.is-fixed {
+    top: 10px;
+    width: 250px;
+    left: calc(50% - 125px);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+}
