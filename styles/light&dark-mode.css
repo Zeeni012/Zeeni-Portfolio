@@ -1,0 +1,68 @@
+body {
+  background-color: #fcf0eb;
+  color: black;
+}
+
+body.dark-mode {
+  background-color: rgba(56, 23, 8);
+  color: #fcf0eb;
+}
+
+body.dark-mode .header-nav-list.is-fixed {
+  background: rgba(56, 23, 8, 0.625);
+}
+body.dark-mode .header-nav-list a,
+body.dark-mode .header-nav-list button {
+  color: #fcf0eb;
+}
+
+body.dark-mode .card {
+  background-color: rgba(69, 23, 10);
+    box-shadow: 0 4px 15px rgba(74, 20, 7, 0.1);
+}
+
+body.dark-mode a {
+  color: #fcf0eb;
+}
+
+#darkModeBtn {}
+
+body.dark-mode .carousel{
+  background: rgba(45, 10, 5);
+    box-shadow: 0 0 20px rgba(79, 19, 6 0.2);
+}
+
+/* ===============================
+   Navigation Buttons
+================================= */
+body.dark-mode .prevBtn,
+body.dark-mode .nextBtn {
+  background: rgba(45, 10, 5);
+    box-shadow: 0 0 20px rgba(79, 19, 6 0.2);
+}
+
+
+body.dark-mode .nextSectionBtn,
+body.dark-mode .prevSectionBtn {
+    background: rgba(156, 0, 0, 0.5);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+}
+
+#pageTransition {
+  position: fixed;
+  inset: 0;
+  background: #fcf0eb;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 99999;
+}
+
+body.dark-mode #pageTransition {
+  background: rgb(56, 23, 8);
+}
+
+#pageTransition.active {
+  opacity: 1;
+  pointer-events: all;
+}

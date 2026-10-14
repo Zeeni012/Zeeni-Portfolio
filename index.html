@@ -17,11 +17,14 @@
   <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/slideshow.css">
   <link rel="stylesheet" href="styles/illustration.css">
-  <link rel="stylesheet" href="styles/scroll-section.css">
+  <link rel="stylesheet" href="styles/side-section.css">
   <link rel="stylesheet" href="styles/projects-display.css">
+  <link rel="stylesheet" href="styles/light&dark-mode.css">
 </head>
 
-<body style="background-color:#fcf0eb;">
+<body>
+
+  <div id="pageTransition"></div>
 
   <!-- Header -->
   <div class="header-div scroll-item">
@@ -122,15 +125,15 @@
 
   </div>
 
-  <!-- Header / Slideshow -->
+  <!-- Slideshow -->
   <div class="carousel-wrapper">
-    <button class="nextBtn">→</button>
-    <button class="prevBtn">←</button>
+    <button class="nextBtn"><a>→</a></button>
+    <button class="prevBtn"><a>←</a></button>
 
     <div class="carousel">
       <div class="track">
 
-        <div class="slide" onclick="window.location.href='Planetary System.html'">
+        <div class="slide" onclick="fadeThenGo('cyclo---v-system.html')">
           <img fetchpriority="high" loading="eager" decoding="async"
             src="images/index/slideshow/cyclo---v-front-page.webp" alt="Cyclo-V">
           <div class="caption">
@@ -244,26 +247,12 @@
         // Buttons
         if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); stopCarousel(); startCarousel(); });
         if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); stopCarousel(); startCarousel(); });
-
-        // Make slides clickable but prevent click when user clicks the youtube link
-        slides.forEach(slide => {
-          slide.addEventListener('click', (e) => {
-            // If click was on a link inside slide, let it through
-            if (e.target.closest('a')) return;
-            const href = slide.getAttribute('onclick');
-            if (href) {
-              // preserve your original onclick behavior (redirect to project page)
-              // NOTE: the original used window.location.href='Planetary System.html' inside markup
-              window.location.href = 'Planetary System.html';
-            }
-          });
-        });
       })();
     </script>
 
   </div>
 
-  <!-- Slideshow / Illustration -->
+  <!-- Illustration -->
   <div class="scroll-item">
     <!-- Nebula 1:1 -->
     <div class="illustration-row">
@@ -357,7 +346,7 @@
     </script>
   </div>
 
-  <!-- Illustration / Projects Display -->
+  <!-- Projects Display -->
   <div class="scroll-item">
     <div class="project-gap">
       <h1>Projects</h1>
@@ -367,7 +356,7 @@
     <div class="three-project-row">
 
       <!-- Card 1 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('cyclo---v-system.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/project-display/cyclo---v-top-down-1by1.webp"
             alt="Top view of a planet with bright concentric rings, with a small planet at the center surrounded by a dark space background.">
@@ -376,7 +365,7 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('Planetary System.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/shared/aisha-height.webp"
             alt="Pixel art character with a gray mask-like face and dark hood, wearing a red cloak that drapes to the ground and standing on two small legs. The background is a light gray checkerboard pattern. To the right of the character is a black bar indicating the character's height in pixels (47).">
@@ -384,7 +373,7 @@
         <div class="card-text">Pixel Art</div>
       </div>
       <!-- Card 3 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('Planetary System.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/project-display/nebula-16by9.webp"
             alt="Colapsing nebula with a shining star in the center">
@@ -397,7 +386,7 @@
     <div class="three-project-row">
 
       <!-- Card 1 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('Planetary System.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/project-display/jeet-ski-title-page.webp"
             alt="Jet Ski Videogame">
@@ -405,7 +394,7 @@
         <div class="card-text">Game Development</div>
       </div>
       <!-- Card 3 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('Planetary System.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/project-display/ds-closed-final-render.webp"
             alt="Nintendo DS render">
@@ -414,7 +403,7 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('Planetary System.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/project-display/cyclo-v-low-quality.webp"
             alt="Sun rendering in the center of the image with solar flares and an illuminated atmosphere">
@@ -428,7 +417,7 @@
     <div class="three-project-row">
 
       <!-- Card 1 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('Planetary System.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/project-display/doghnut-pfp.webp"
             alt="Screenshot of a 3D donut with a pink frosting and sprinkles on a blue checkered table">
@@ -437,10 +426,10 @@
       </div>
 
       <!-- Card 1 -->
-      <div class="card" onclick="window.location.href='Planetary System.html'">
+      <div class="card" onclick="fadeThenGo('Planetary System.html')">
         <div class="card-img-wrapper">
           <img loading="lazy" decoding="async" src="images/index/project-display/table.webp"
-            alt="Colapsing nebula with a shining star in the center">
+            alt="Woodworking table project">
         </div>
         <div class="card-text">Woodworking</div>
       </div>
@@ -449,12 +438,15 @@
 
   </div>
 
-  <!-- Projects Display / Scroll Section -->
+  <!-- Side Section -->
   <div class="scroll-item">
     <button class="prevSectionBtn">↑</button>
     <button class="nextSectionBtn">↓</button>
 
     <div class="socials">
+
+      <a id="darkModeBtn"><img loading="lazy" decoding="async"
+          src="images/index/ui/instagram-icon-b&w.webp" alt="Instagram"></a>
       <a href="https://www.instagram.com/zeeni012" target="_blank"><img loading="lazy" decoding="async"
           src="images/index/ui/instagram-icon-b&w.webp" alt="Instagram"></a>
       <a href="https://www.youtube.com/@Hamzeeni12" target="_blank"><img loading="lazy" decoding="async"
@@ -464,8 +456,6 @@
       <a href="mailto:hamzaomarksp@gmail.com" target="_blank"><img loading="lazy" decoding="async"
           src="images/index/ui/email-icon-b&w.webp" alt="Email"></a>
     </div>
-    <!-- Scroll Section -->
-
 
     <script>
       // simplified scroll-to-section + observer mapping
@@ -574,22 +564,77 @@
       });
     });
   </script>
+
+
+  <!-- Light/dark mode -->
+  <script>
+    const darkModeBtn = document.getElementById("darkModeBtn");
+
+    // Apply saved mode on load
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark-mode");
+    }
+
+    darkModeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    });
+  </script>
+
+
+  <!-- Page to page transition -->
+  <script>
+    const overlay = document.getElementById("pageTransition");
+
+    function fadeThenGo(url) {
+      overlay.classList.add("active");
+
+      setTimeout(() => {
+        window.location.href = url;
+      }, 400);
+    }
+
+    window.addEventListener("pageshow", () => {
+      overlay.classList.remove("active");
+    });
+
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+
+        if (
+          !href ||
+          href.startsWith("#") ||
+          href.startsWith("mailto:") ||
+          this.target === "_blank"
+        ) {
+          return;
+        }
+
+        e.preventDefault();
+        fadeThenGo(href);
+      });
+    });
+  </script>
+
 </body>
 
 </html>
 
 <!-- Add Ceramic project -->
 
-<!-- Add dots under the theslideshow to indicate how many slides there are and which one were on -->
+<!-- Add dots under the the slideshow to indicate how many slides there are and which one were on -->
 
 <!-- Not everyting lines up propperly on mobile when using the up and down arrow botttons -->
 
 <!-- Need better pictures for the project section -->
 
 <!-- When clicking on an image in the illustration section, it should show itself in full screen format -->
-
-<!-- Because of the sheer number of woodworking projects I've created, I decided to dedicate just one project page for them all.
- Listed my favorite to least: top to bottom -->
 
 <!-- mailto doesn't work -->
 
@@ -598,3 +643,6 @@
 <!-- Fix black bars on Jeet Ski img on slideshow by using the original img, then cropping and finally converting to webp -->
 
 <!-- Add a Pintrest & Patrion -->
+
+<!-- Because of the sheer number of woodworking projects I've created, I decided to dedicate just one project page for them all.
+ Listed my favorite to least: top to bottom -->

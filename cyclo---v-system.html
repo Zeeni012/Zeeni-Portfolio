@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Zeeni">
+  <meta name="description" content="Planetary System">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planetary System</title>
+
+  <style>
+    :root {
+      --muted: rgba(11, 11, 11, 0.65);
+      --page-padding-left-right: 60px;
+    }
+
+    /* =========================================
+       BASE STYLES
+    ========================================== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 30px var(--page-padding-left-right);
+      /* background-image */
+      background-image: url("images/planetary-system/se.webp");
+      background-size: calc((90% + 160px)/4);
+      animation: gradientShift 120s linear infinite;
+      align-items: start;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      /* page doesn't scroll */
+      
+    /* cursor: url("images/planetary-system/123.png"), default; */
+    }
+
+    /* Background animation */
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 0%;
+      }
+
+      100% {
+        background-position: -200% -100%;
+      }
+    }
+
+    /* =========================================
+       WRAPPER this is supposed to hold both panels
+       and make the background more glassy. Needs work
+    ========================================== */
+    .section-wrapper {
+      position: absolute;
+      left: 2.5vh;
+      top: 2.5vh;
+      background: rgba(255, 64, 0, 0.075);
+      width: calc(100vw - 2.5vh * 2);
+      height: calc(100vh - 2.5vh * 2);
+      border-radius: 25px;
+      box-shadow: 0 8px 30px rgba(68, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .section-wrapper>div {
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+
+    .section-wrapper::before {
+      content: '';
+      position: absolute;
+
+      border-radius: 25px;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.35));
+      backdrop-filter: blur(2px) grayscale(10%) brightness(99%);
+      -webkit-backdrop-filter: blur(2px) grayscale(10%) brightness(99%);
+      border: 5px solid rgba(0, 0, 0, 0.01);
+    }
+
+    /*.section-wrapper:hover {
+      transition: all 0.3s ease;
+      left: 2.5vh;
+      top: 10vh;
+      background: rgba(255, 64, 0, 0.075);
+      width: calc(100vw - 2.5vh * 2);
+      height: calc(100vh - 10vh - 2.5vh);
+    }
+*/
+    /* =========================================
+       GLASS PANEL
+    ========================================== */
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(3px) grayscale(15%);
+      -webkit-backdrop-filter: blur(3px) grayscale(15%);
+      border-radius: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 8px 30px rgba(8, 8, 8, 0.15);
+      overflow: hidden;
+      z-index: 2;
+      padding: 22px;
+    }
+
+    .glass-panel:hover {
+      transition: all 0.2s linear;
+      background: rgba(255, 255, 255, 0);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 1), inset 0 0 5px rgba(255, 255, 255, 1);
+
+      border: 5px solid rgba(0, 0, 0, 0.01);
+      backdrop-filter: blur(3px) grayscale(25%) brightness(102%);
+      -webkit-backdrop-filter: blur(3px) grayscale(25%) brightness(102%);
+
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      /* keep scroll inside, not on the panel itself */
+    }
+
+    .section-inbox {
+      overflow-y: auto;
+      /* this is the magic */
+      overflow-x: hidden;
+      height: 100%;
+      padding: 14px;
+      /* space between content and bar */
+      /* Firefox (limited styling) */
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.55) transparent;
+    }
+
+    /* =========================================
+       LEFT PANEL
+    ========================================== */
+    .section-left {
+      left: 1.5vh;
+      top: 1.5vh;
+      width: 27.5%;
+      height: calc(100% - 3vh);
+    }
+
+    /* =========================================
+       RIGHT PANEL
+    ========================================== */
+    .section-right {
+      right: 1.5vh;
+      top: 1.5vh;
+      height: calc(100% - 3vh);
+      width: 67.5%;
+    }
+
+    /* =========================================
+       PANEL CONTENT
+    ========================================== */
+
+    h2 {
+      font-weight: 600;
+      margin: 6px 0 4px;
+      font-size: 22px;
+      text-align: center
+    }
+
+    p {
+      margin: 0.75rem 0;
+      color: var(--muted);
+      line-height: 1.45
+    }
+
+
+    .aspect-16-9 {
+      position: relative;
+      max-width: 50%;
+      max-height: 28.13%;
+      border-radius: 12px
+    }
+
+    .aspect-9-16 {
+      position: relative;
+      max-width: 50%;
+      max-height: 88.88%;
+      border-radius: 12px
+    }
+
+    .half-half {
+      position: relative;
+      max-width: calc(50% - 8px);
+      border-radius: 12px
+    }
+
+    .imgblock {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      margin: 16px 0;
+    }
+
+    .imgblock img {
+      border-radius: 12px;
+      width: 100%;
+    }
+
+    .split {
+      flex: 1 1 0;
+      /* two equal columns, fills 100% */
+      min-width: 0;
+      /* prevents flex overflow weirdness */
+      height: 100%;
+      /* same height */
+      border-radius: 12px
+    }
+
+    .split:first-child {
+      flex: 1920;
+    }
+
+    .split:last-child {
+      flex: 607.5;
+    }
+
+    /* 1080(9/16) */
+  </style>
+</head>
+
+<body>
+  <!-- Sectionized Layout -->
+  <div class="section-wrapper">
+    <!-- LEFT PANEL -->
+    <div class="section-left glass-panel">
+      <div class="section-inbox" id="leftScroll">
+        <h2>Plnetary System</h2>
+
+        <!-- First show the final result and tk sabou it and then say thjhe ret of this -->
+        <h2>Planetary System</h2>
+        <p>
+          Cyclo-V is a long-running visualization project I started in 2019. It began as hand-drawn maps, then slowly
+          turned into a full 3D project once I started pushing for something that could beautiful and realistic. This
+          page effectively reperesents the project’s timeline form early 2D concept work in Krita to its finalization in
+          Blender, and the changes that shaped the final look you’re seeing now.
+        </p>
+
+        <h2>What is Cyclo-V?</h2>
+        <p>
+          In this visualization, Cyclo-V is a fictional planet positioned within a larger fictional setting. The goal in
+          this project wasn't to “explain the lore,” it’s to build a grounded, believable planet: atmosphere, cloud
+          layers, surface, and moons. The renders you’re seeing focus on exclusivly the planets esthetics and sapshots
+          of the journey to ceate the final renderrs this page is a window what went behind it.
+        </p>
+
+        <h2>2D Map Design</h2>
+        <div class="imgblock">
+          <img src="images\planetary-system\Map6-Biome Color.png" class="half-half"> <img
+            src="images\planetary-system\Map6-Base Color.png" class="half-half" alt="">
+        </div>
+        <p>
+          Before anything in 3D, I spent years drawing 2D maps. Each map was am attempt to add more detail and more
+          variables than the last, but I never fully committed to making a hyper-detailed “final” map. Instead,
+          iterating and leaving room for creativity in each attempt. Moving into Blender, gave me the ability to much
+          more easily make a realistic attempt.
+        </p>
+
+
+        <h2>Texture Mapping</h2>
+        <p>
+          I used those 2D maps as the planet’s surface textures, but the limitations of an image texture is that it
+          relies on pixels to display details, meaning as soon as camera was zommed onto the urface, the pixelation
+          limitations became obvious. To solve that, I requuires understanding how textures are displayed onto 3D
+          objects.
+        </p>
+
+        <p>
+          In Blender, textures are projected onto a model using UVs and vector mapping, which control how the texture is
+          wrapped and oriented on the surface, respectively. So while adding detail over the textures wouldn't fix the
+          pixelation, recreating vector logic and subtly mixing in noise prior to applying the 2D maps will keep the
+          overall map design while adding much more surface detail and variation.
+        </p>
+
+        <h2>First attempt</h2>
+        <p>Afterwards I made the first version of the planet in Blender, for a while it satisfied me in how it looked
+          but
+          eventually I realized it was too low quality, and there were some parts, Mainly in the clouds and atmosphere,
+          that didnt look realisyic
+          or appealing.I wanted to make something that looked more like a real planet, and less like a 3d model.
+        </p>
+        <div class="imgblock">
+          <img src="images\planetary-system/Cyclo-V South.png">
+        </div>
+
+        <h2>Info</h2>
+        <p>This project was made using Blender and rendered with Cycles. Textures were created using a mix of procedural
+          generation and image textures from various sources.</p>
+
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="section-right glass-panel">
+      <div class="section-inbox" id="rightScroll">
+        <h2>Cyclo-V</h2>
+        <div class="imgblock">
+          <img src="images\planetary-system/Cyclo-V Clouds and land.png" class="half-half">
+          <img src="images\planetary-system/Cinematic Cyclo-V.jpg" class="half-half">
+        </div>
+        <div class="imgblock">
+          <img src="images\planetary-system/Cyclo V (1).png" class="half-half"> <img
+            src="images\planetary-system/Cyclo V (1).png" class="half-half" alt="">
+        </div>
+
+        <h2>2D Art</h2>
+        <div class="imgblock">
+          <img src="images/planetary-system/map 5.png" class="split" alt="">
+          <img src="images/planetary-system/Map6-Height Color.png" class="split" alt="">
+        </div>
+        <p>The true starting point begins somewhere between wanting to make a planet for this sun (2022) and drawings of
+          maps I've made long before (2019).</p>
+
+        <h2>Planet Surface</h2>
+        <div class="imgblock">
+          <img src="images\planetary-system\pixelated-texture -map.png" class="half-half"> <img
+            src="images\planetary-system/detailed-texture -map.png" class="half-half" alt="">
+        </div>
+
+        <h2>My first attempt</h2>
+        <div class="imgblock">
+          <img src="images/planetary-system/Cyclo-V full close-up shot.png" alt="">
+        </div>
+        <p>Decent, 80% of the way there, but somethings off, isn't it.</p>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  const left = document.getElementById("leftScroll");
+  const right = document.getElementById("rightScroll");
+
+  let lock = false;
+
+  function sync(from, to) {
+    if (lock) return;
+    lock = true;
+
+    const fromMax = from.scrollHeight - from.clientHeight;
+    const toMax = to.scrollHeight - to.clientHeight;
+
+    const ratio = fromMax > 0 ? (from.scrollTop / fromMax) : 0;
+    to.scrollTop = ratio * toMax;
+
+    lock = false;
+  }
+
+  left.addEventListener("scroll", () => sync(left, right), { passive: true });
+  right.addEventListener("scroll", () => sync(right, left), { passive: true });
+</script>
+
+</html>
+
+//left side is explenation, right side is big image
